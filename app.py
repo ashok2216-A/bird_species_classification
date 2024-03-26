@@ -1,6 +1,7 @@
 import os
 import warnings
 import librosa
+import soundfile as sf
 import streamlit as st
 from joblib import dump, load
 from audio_analysis import audio_signals
@@ -24,7 +25,7 @@ uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=Fa
 
 
 file_path = uploaded_file
-audio_data, sampling_rate = librosa.load(file_path)
+audio_data, sampling_rate = sf.read(file_path)
 st.audio(audio_data, sample_rate=sampling_rate)
 
 # audio_signals(file_path)
