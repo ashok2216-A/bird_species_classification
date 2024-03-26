@@ -11,7 +11,7 @@ import streamlit as st
 
 def audio_waveframe(file_path):
     # Load the audio file
-    audio_data, sampling_rate = sf.read(file_path)
+    audio_data, sampling_rate = librosa.load(file_path)
     # Calculate the duration of the audio file
     duration = len(audio_data) / sampling_rate
     # Create a time array for plotting
@@ -53,7 +53,7 @@ def audio_waveframe(file_path):
 
 def spectrogram(file_path):
     
-    y, sr = sf.read(file_path)
+    y, sr = librosa.load(file_path)
     # Compute the spectrogram
     D = librosa.stft(y)
     # Convert magnitude spectrogram to decibels
