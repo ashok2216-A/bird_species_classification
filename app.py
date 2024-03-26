@@ -10,7 +10,7 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
-uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
+# uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
 
 # # Check if a file is uploaded
 # if uploaded_file is not None:
@@ -21,6 +21,17 @@ uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=Fa
 #         st.write("Uploaded file path:", file_path)
 #     else:
 #         st.write("Error: File not found.")
+
+
+uploaded_file = st.file_uploader("", type="mp3")
+
+# if uploaded_file is not None:
+#     if uploaded_file.type not in ["audio/mp3"]:
+#         st.warning(f"Wrong file type: {uploaded_file.type}")
+#     else:
+#         if uploaded_file.type == "audio/mp3":
+
+
 file_path = uploaded_file
 audio_data, sampling_rate = librosa.load(file_path)
 st.audio(audio_data, sample_rate=sampling_rate)
