@@ -31,32 +31,32 @@ st.audio(audio_data, sample_rate=sampling_rate)
 # audio_signals(file_path)
 
 # Decorator for caching function results
-@st.cache_data
-def load_model(model_path):
-    return load(model_path)
+# @st.cache_data
+# def load_model(model_path):
+#     return load(model_path)
 
-@st.cache_data
-def predict_emotion(audio_path, _model):
-    extracted_features = extract_features(audio_path).reshape(1, -1)
-    return _model.predict(extracted_features)
+# @st.cache_data
+# def predict_emotion(audio_path, _model):
+#     extracted_features = extract_features(audio_path).reshape(1, -1)
+#     return _model.predict(extracted_features)
 
 
-# Load the model
-model_path = 'model.joblib'
-model = load_model(model_path)
+# # Load the model
+# model_path = 'model.joblib'
+# model = load_model(model_path)
 
-# Predict the emotion
-y_predict = predict_emotion(file_path, model)
+# # Predict the emotion
+# y_predict = predict_emotion(file_path, model)
 
-# Mapping for emotion labels
-labels_list = ['Fear', 'Angry', 'Neutral', 'Sad', 'Pleasant_Suprised', 'Disgust', 'Happy']
-encoded_label = [2, 0, 4, 6, 5, 1, 3]
+# # Mapping for emotion labels
+# labels_list = ['Fear', 'Angry', 'Neutral', 'Sad', 'Pleasant_Suprised', 'Disgust', 'Happy']
+# encoded_label = [2, 0, 4, 6, 5, 1, 3]
 
-labels = {}
-for label, prediction in zip(encoded_label, labels_list):
-    labels[label] = prediction
+# labels = {}
+# for label, prediction in zip(encoded_label, labels_list):
+#     labels[label] = prediction
 
-# Display predicted class
-if y_predict[0] in labels.keys():
-    st.subheader(f'Predicted Class: :rainbow[{labels[y_predict[0]]}]')
+# # Display predicted class
+# if y_predict[0] in labels.keys():
+#     st.subheader(f'Predicted Class: :rainbow[{labels[y_predict[0]]}]')
 
