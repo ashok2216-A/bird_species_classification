@@ -22,8 +22,6 @@ if uploaded_file is not None:
     #     st.write("Uploaded file path:", file_path)
 
 
-
-    file_path = uploaded_file
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
     
