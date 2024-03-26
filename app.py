@@ -27,7 +27,7 @@ file_path = uploaded_file
 audio_data, sampling_rate = librosa.load(file_path)
 st.audio(audio_data, sample_rate=sampling_rate)
 
-audio_signals(file_path)
+# audio_signals(file_path)
 
 # Decorator for caching function results
 @st.cache_data
