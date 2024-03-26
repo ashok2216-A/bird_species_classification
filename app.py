@@ -21,7 +21,7 @@ uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=Fa
 #         st.write("Uploaded file path:", file_path)
 #     else:
 #         st.write("Error: File not found.")
-
+file_path = uploaded_file
 audio_data, sampling_rate = librosa.load(file_path)
 st.audio(audio_data, sample_rate=sampling_rate)
 
