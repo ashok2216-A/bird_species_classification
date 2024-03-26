@@ -11,7 +11,7 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
-uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
+uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False, type='mp3')
 
 # # Check if a file is uploaded
 # if uploaded_file is not None:
