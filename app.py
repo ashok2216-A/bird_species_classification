@@ -12,8 +12,8 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
-
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
+
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(audio_file.read())
@@ -22,6 +22,8 @@ if audio_file is not None:
     audio_signals(file_path)
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
+else:
+    st.markdown('File not Found!')
     
 
 # Decorator for caching function results
