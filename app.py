@@ -22,6 +22,7 @@ def predict_emotion(audio_path, _model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
     return _model.predict(extracted_features)
 
+@st.cache_resources
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 if audio_file is not None:
@@ -34,12 +35,13 @@ if audio_file is not None:
     st.audio(audio_data, sample_rate=sampling_rate)
     
     # Load the model
+    @st.cache_resources
     model_path = 'model.joblib'
     model = load_model(model_path)
     
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
-
+    @st.cache_resources
     class_file = open('classes.txt', 'r')
     encoded_class_file = open('encoded_classes.txt', 'r')
     labels_list = class_file.read()
