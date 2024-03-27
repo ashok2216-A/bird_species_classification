@@ -3,6 +3,7 @@ import warnings
 import librosa
 import soundfile as sf
 import streamlit as st
+import tempfile
 from joblib import dump, load
 from audio_analysis import audio_signals
 from audio_processing import extract_features
@@ -13,7 +14,13 @@ st.header('', divider='rainbow')
 
 
 # while True:
-uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
+# uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
+audio_file = st.file_uploader("Upload audio file", type=["mp3", "wav", "ogg"])
+if audio_file is not None:
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.write(audio_file.read())
+        st.success("Audio file successfully uploaded and stored temporally.")
+
 audio_signals(uploaded_file)
     # audio_data, sampling_rate = librosa.load(uploaded_file)
     # st.audio(audio_data, sample_rate=sampling_rate)
