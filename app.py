@@ -12,6 +12,15 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
+# Decorator for caching function results
+@st.cache_data
+def load_model(model_path):
+    return load(model_path)
+
+@st.cache_data
+def predict_emotion(audio_path, _model):
+    extracted_features = extract_features(audio_path).reshape(1, -1)
+    return _model.predict(extracted_features)
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
@@ -23,16 +32,6 @@ if audio_file is not None:
     audio_signals(file_path)
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
-
-    # Decorator for caching function results
-    @st.cache_data
-    def load_model(model_path):
-        return load(model_path)
-    
-    @st.cache_data
-    def predict_emotion(audio_path, _model):
-        extracted_features = extract_features(audio_path).reshape(1, -1)
-        return _model.predict(extracted_features)
     
     # Load the model
     model_path = 'model.joblib'
