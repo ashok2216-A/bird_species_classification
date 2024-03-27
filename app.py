@@ -4,6 +4,7 @@ import librosa
 # import soundfile as sf
 import streamlit as st
 import tempfile
+import json
 from joblib import dump, load
 from audio_analysis import audio_signals
 from audio_processing import extract_features
@@ -38,9 +39,9 @@ if audio_file is not None:
     model_path = 'model.joblib'
     model = load_model(model_path)
     
-    class_file = open('classes.json', 'r')
+    labels_list = json.loads('classes.json', 'r')
 
-    labels_list = dict(class_file.read())
+    # labels_list = dict(class_file.read())
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
     
