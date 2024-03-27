@@ -40,7 +40,7 @@ if audio_file is not None:
     
     class_file = open('classes.json', 'r')
 
-    labels_list = class_file.read()
+    labels_list = dict(class_file.read())
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
     
