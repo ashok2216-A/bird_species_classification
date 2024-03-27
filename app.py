@@ -24,8 +24,6 @@ if audio_file is not None:
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
 
-    
-    
     # Decorator for caching function results
     @st.cache_data
     def load_model(model_path):
@@ -35,7 +33,6 @@ if audio_file is not None:
     def predict_emotion(audio_path, _model):
         extracted_features = extract_features(audio_path).reshape(1, -1)
         return _model.predict(extracted_features)
-    
     
     # Load the model
     model_path = 'model.joblib'
