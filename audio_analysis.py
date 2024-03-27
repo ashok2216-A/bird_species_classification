@@ -59,7 +59,7 @@ def spectrogram(file_path):
     # Convert magnitude spectrogram to decibels
     DB = librosa.amplitude_to_db(abs(D))
     # Plot the spectrogram
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(20, 5))
     librosa.display.specshow(DB, sr=sr, x_axis='time', y_axis='hz')
     plt.colorbar(format='%+2.0f dB')
     plt.title('Spectrogram')
