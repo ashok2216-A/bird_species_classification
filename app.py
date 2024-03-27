@@ -44,7 +44,7 @@ if audio_file is not None:
     encoded_label = encoded_class_file.read()
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
-    
+    st.write(y_predict)
     labels = {}
     for label, prediction in zip(encoded_label, labels_list):
         labels[label] = prediction
