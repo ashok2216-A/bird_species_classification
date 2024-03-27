@@ -12,6 +12,7 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
+@st.cache_data
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 if audio_file is not None:
