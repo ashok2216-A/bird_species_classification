@@ -49,5 +49,9 @@ if audio_file is not None:
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict[0])][:-6]}]')
     else:
         st.write('Class not Found')
+        
+    with st.container(height=300):
+    st.markdown(labels_list.values())
+    
 else:
     st.markdown('File not Found!')
