@@ -51,7 +51,7 @@ if audio_file is not None:
         st.write('Class not Found')
         
     with st.container(height=300):
-        st.markdown(labels_list.values())
+        st.markdown(list(labels_list.values()))
     
 else:
     st.markdown('File not Found!')
