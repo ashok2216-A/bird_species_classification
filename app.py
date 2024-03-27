@@ -49,13 +49,13 @@ if audio_file is not None:
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict[0])][:-6]}]')
     else:
         st.write('Class not Found')
-        
-    st.header('', divider='rainbow')
-    st.markdown('Download the Sample Audio here :point_down:')
-    st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
-    st.subheader('Scientific Name of 114 Species of Birds :bird:')
-    with st.container(height=300):
-        st.markdown(list(labels_list.values()))
-        
+            
 else:
     st.markdown('File not Found!')
+    
+st.header('', divider='rainbow')
+st.markdown('Download the Sample Audio here :point_down:')
+st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
+st.subheader('Scientific Name of 114 Species of Birds :bird:')
+with st.container(height=300):
+    st.markdown(list(labels_list.values()))
