@@ -54,10 +54,8 @@ def audio_waveframe(file_path):
 def spectrogram(file_path):
     
     y, sr = librosa.load(file_path)
-    n_fft = 500  # Number of FFT points 2048
-    hop_length = 1 
     # Compute the spectrogram
-    D = librosa.stft(y, n_fft=n_fft, hop_length=hop_length)
+    D = librosa.stft(y)
     # Convert magnitude spectrogram to decibels
     DB = librosa.amplitude_to_db(abs(D))
     # Plot the spectrogram
