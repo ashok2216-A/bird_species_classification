@@ -1,13 +1,14 @@
 import os
 import warnings
 import librosa
-# import soundfile as sf
 import streamlit as st
 import tempfile
 import json
 from joblib import dump, load
+# import soundfile as sf
 from audio_analysis import audio_signals
 from audio_processing import extract_features
+
 
 st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
@@ -23,7 +24,6 @@ def predict_emotion(audio_path, _model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
     return _model.predict(extracted_features)
 
-    
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 if audio_file is not None:
@@ -31,9 +31,9 @@ if audio_file is not None:
         tmp_file.write(audio_file.read())
         st.success("Audio file successfully uploaded and stored temporally.")
     file_path = tmp_file.name
-    audio_signals(file_path)
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
+    audio_signals(file_path)
     
     # Load the model
     model_path = 'model.joblib'
