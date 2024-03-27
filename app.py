@@ -39,8 +39,8 @@ if audio_file is not None:
     model_path = 'model.joblib'
     model = load_model(model_path)
     
-    class_file = open('classes.json', 'r')
-    labels_list = json.loads(class_file.read())
+    class_file = open('classes.txt', 'r')
+    labels_list = class_file.read()
     
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
