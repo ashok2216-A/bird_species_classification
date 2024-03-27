@@ -22,7 +22,7 @@ def predict_emotion(audio_path, _model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
     return _model.predict(extracted_features)
 
-
+    
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 if audio_file is not None:
@@ -44,7 +44,7 @@ if audio_file is not None:
     encoded_label = encoded_class_file.read()
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
-    st.write(y_predict)
+    
     labels = {}
     for label, prediction in zip(encoded_label, labels_list):
         labels[label] = prediction
