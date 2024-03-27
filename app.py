@@ -11,7 +11,7 @@ from audio_processing import extract_features
 
 
 st.header('Bird Species Classification')
-st.markdown('Sound of 114 Species of Birds :bird:')
+st.markdown('Sound of 114 Species of Birds :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
 
 # Decorator for caching function results
