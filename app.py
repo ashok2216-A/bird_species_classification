@@ -162,7 +162,7 @@ if audio_file is not None:
     
     # Display predicted class
     if y_predict[0] in labels_list.keys():
-        st.subheader(f'Predicted Class: :rainbow[{labels_list[y_predict[0]][:-6]}')
+        st.subheader(f'Predicted Class: :rainbow[{labels_list[y_predict[0]][:-6]}]')
     else:
         st.write('Class not Found')
 else:
