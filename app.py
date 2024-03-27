@@ -41,7 +41,7 @@ if audio_file is not None:
     
     class_file = open('classes.txt', 'r').read()
     # labels_list = json.loads(class_file)
-    label_list={66: 'Ornate Tinamou_sound',
+    labels_list={66: 'Ornate Tinamou_sound',
  59: 'Moluccan Megapode_sound',
  76: 'Red-throated Piping Guan_sound',
  51: 'Little Chachalaca_sound',
