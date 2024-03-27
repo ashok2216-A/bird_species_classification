@@ -53,7 +53,7 @@ if audio_file is not None:
     st.header('', divider='rainbow')
     st.markdown('Download the Sample Audio here :point_down:')
     st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
-    st.write('Scientific Name of 114 Species of Birds :bird:')
+    st.subheader('Scientific Name of 114 Species of Birds :bird:')
     with st.container(height=300):
         st.markdown(list(labels_list.values()))
         
