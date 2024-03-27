@@ -22,7 +22,7 @@ def predict_emotion(audio_path, _model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
     return _model.predict(extracted_features)
 
-@st.cache_resources
+
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 if audio_file is not None:
