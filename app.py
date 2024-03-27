@@ -38,20 +38,15 @@ if audio_file is not None:
     model_path = 'model.joblib'
     model = load_model(model_path)
     
-    class_file = open('classes.txt', 'r')
-    encoded_class_file = open('encoded_classes.txt', 'r')
+    class_file = open('classes.json', 'r')
+
     labels_list = class_file.read()
-    encoded_label = encoded_class_file.read()
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
     
-    labels = {}
-    for label, prediction in zip(encoded_label, labels_list):
-        labels[label] = prediction
-    
     # Display predicted class
-    if y_predict[0] in labels.keys():
-        st.subheader(f'Predicted Class: :rainbow[{labels[y_predict[0]]}]')
+    if y_predict[0] in labels_list.keys():
+        st.subheader(f'Predicted Class: :rainbow[{labels_list[y_predict[0]]}]')
     else:
         st.write('Class not Found')
 else:
