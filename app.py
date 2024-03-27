@@ -15,7 +15,6 @@ st.header('', divider='rainbow')
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
-@st.cache_data
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(audio_file.read())
@@ -44,10 +43,11 @@ if audio_file is not None:
     
     # Predict the emotion
     y_predict = predict_emotion(file_path, model)
-    
-    # Mapping for emotion labels
-    labels_list = ['Fear', 'Angry', 'Neutral', 'Sad', 'Pleasant_Suprised', 'Disgust', 'Happy']
-    encoded_label = [2, 0, 4, 6, 5, 1, 3]
+
+    class_file = open('classes.txt', 'r')
+    encoded_class_file = open('encoded_classes.txt', 'r')
+    labels_list = class_file.read()
+    encoded_label = encoded_class_file.read()
     
     labels = {}
     for label, prediction in zip(encoded_label, labels_list):
