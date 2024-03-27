@@ -11,14 +11,13 @@ st.header('Bird Species Classification')
 st.markdown('Sound of 114 Species of Birds :bird:')
 st.header('', divider='rainbow')
 
-i = 1
-if i == 1:
+
+while True:
     uploaded_file = st.file_uploader("Choose a Audio file", accept_multiple_files=False)
     audio_signals(uploaded_file)
     audio_data, sampling_rate = librosa.load(uploaded_file)
     st.audio(audio_data, sample_rate=sampling_rate)
-else:
-    None
+
 # # # Check if a file is uploaded
 # if uploaded_file is not None:
 #     # Get the path of the uploaded file
