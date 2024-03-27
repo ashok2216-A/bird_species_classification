@@ -32,12 +32,13 @@ model = load_model(model_path)
 class_file = open('classes.json', 'r').read()
 labels_list = json.loads(class_file)
 
-st.header('', divider='rainbow')
 st.markdown('Download the Sample Audio here :point_down:')
 st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
 st.subheader('Scientific Name of 114 Species of Birds :bird:')
+
 with st.container(height=300):
     st.markdown(list(labels_list.values()))
+st.header('', divider='rainbow')
 
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
