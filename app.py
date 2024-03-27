@@ -45,7 +45,7 @@ if audio_file is not None:
     y_predict = predict_emotion(file_path, model)
     
     # Display predicted class
-    if y_predict[0] in labels_list.keys():
+    if str(y_predict[0]) in labels_list.keys():
         st.subheader(f'Predicted Class: :rainbow[{labels_list[y_predict[0]][:-6]}]')
     else:
         st.write('Class not Found')
