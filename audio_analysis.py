@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 import librosa
 from IPython.display import Audio
-import soundfile as sf
+# import soundfile as sf
 import streamlit as st
 
 
@@ -74,7 +74,6 @@ def spectrogram(file_path):
 
 def audio_signals(file_path):
     aw = audio_waveframe(file_path)
-    aw2 = audio_waveframe(file_path)
-    # spg = spectrogram(file_path)
-    return aw, aw2
-    # return aw, spg
+    spg = spectrogram(file_path)
+  
+    return aw, spg
