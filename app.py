@@ -15,12 +15,12 @@ st.header('', divider='rainbow')
 # Decorator for caching function results
 @st.cache_data
 def load_model(model_path):
-    return load(model_path)
+    print(load(model_path))
 
 @st.cache_data
 def predict_emotion(audio_path, _model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
-    return _model.predict(extracted_features)
+    print(_model.predict(extracted_features))
 
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
@@ -36,14 +36,14 @@ if audio_file is not None:
     
     # Load the model
     model_path = 'model.joblib'
-    model = load_model(model_path)
+    model = load_(model_path)
     
-    # Predict the emotion
-    y_predict = predict_emotion(file_path, model)
     class_file = open('classes.txt', 'r')
     encoded_class_file = open('encoded_classes.txt', 'r')
     labels_list = class_file.read()
     encoded_label = encoded_class_file.read()
+    # Predict the emotion
+    y_predict = predict_emotion(file_path, model)
     
     labels = {}
     for label, prediction in zip(encoded_label, labels_list):
