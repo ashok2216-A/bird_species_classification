@@ -21,7 +21,7 @@ if audio_file is not None:
         tmp_file.write(audio_file.read())
         st.success("Audio file successfully uploaded and stored temporally.")
 
-audio_signals(audio_file)
+        audio_signals(audio_file)
     # audio_data, sampling_rate = librosa.load(uploaded_file)
     # st.audio(audio_data, sample_rate=sampling_rate)
 
