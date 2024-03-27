@@ -26,6 +26,13 @@ def predict_emotion(audio_path, _model):
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
+st.header('', divider='rainbow')
+st.markdown('Download the Sample Audio here :point_down:')
+st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
+st.subheader('Scientific Name of 114 Species of Birds :bird:')
+with st.container(height=300):
+    st.markdown(list(labels_list.values()))
+
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(audio_file.read())
@@ -53,9 +60,4 @@ if audio_file is not None:
 else:
     st.markdown('File not Found!')
     
-st.header('', divider='rainbow')
-st.markdown('Download the Sample Audio here :point_down:')
-st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
-st.subheader('Scientific Name of 114 Species of Birds :bird:')
-with st.container(height=300):
-    st.markdown(list(labels_list.values()))
+
