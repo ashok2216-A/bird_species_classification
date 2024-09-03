@@ -28,6 +28,7 @@ def predict_class(audio_path, model):
     extracted_feature = extracted_feature.reshape(1, 1, extracted_feature.shape[0])
     prediction = model.predict(extracted_feature)
     predicted_class_index = np.argmax(prediction)
+    print(predicted_class_index)
     # predicted_class_label = label_encoder.inverse_transform([predicted_class_index])[0]
     return predicted_class_index
 
