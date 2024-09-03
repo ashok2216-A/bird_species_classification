@@ -24,7 +24,10 @@ def loaded_model(model_path):
 def predict_class(audio_path, model):
     extracted_feature = extract_features(audio_path)
     extracted_feature = extracted_feature.reshape(1, 1, extracted_feature.shape[0])
-    return model.predict(extracted_feature)
+    prediction = model.predict(extracted_feature)
+    predicted_class_index = np.argmax(prediction)
+    predicted_class_label = label_encoder.inverse_transform([predicted_class_index])[0]
+    return predicted_class_label
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 # Load the model
