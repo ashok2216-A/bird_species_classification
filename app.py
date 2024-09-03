@@ -5,6 +5,7 @@ import streamlit as st
 import tempfile
 import json
 from joblib import dump, load
+from tensorflow.keras.models import load_model
 # import soundfile as sf
 from audio_analysis import audio_signals
 from audio_processing import extract_features
@@ -17,7 +18,7 @@ st.header('', divider='rainbow')
 # Decorator for caching function results
 @st.cache_data
 def load_model(model_path):
-    return load(model_path)
+    return load_model(model_path)
 
 @st.cache_data
 def predict_emotion(audio_path, _model):
@@ -26,7 +27,7 @@ def predict_emotion(audio_path, _model):
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 # Load the model
-model_path = 'model.joblib'
+model_path = 'bird_audio_classification_model.h5'
 model = load_model(model_path)
 
 class_file = open('classes.json', 'r').read()
