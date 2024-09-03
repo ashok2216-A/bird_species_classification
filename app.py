@@ -21,9 +21,9 @@ def loaded_model(model_path):
     return load_model(model_path)
 
 @st.cache_data
-def predict_emotion(audio_path, _model):
+def predict_emotion(audio_path, model):
     extracted_features = extract_features(audio_path).reshape(1, -1)
-    return _model.predict(extracted_features)
+    return model.predict(extracted_features)
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 # Load the model
@@ -49,7 +49,7 @@ if audio_file is not None:
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
     audio_signals(file_path)
-    # Predict the emotion
+    # Predict the class
     y_predict = predict_emotion(file_path, model)
     # Display predicted class
     if str(y_predict[0]) in labels_list.keys():
