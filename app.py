@@ -22,7 +22,7 @@ def loaded_model(model_path):
 
 @st.cache_data
 def predict_class(audio_path, model):
-    extracted_feature = extract_features(audio_path).reshape(1, -1)
+    extracted_feature = extract_features(audio_path).reshape(1, 1, features.shape[0])
     return model.predict(extracted_feature)
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
