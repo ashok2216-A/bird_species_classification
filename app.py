@@ -65,6 +65,7 @@ if audio_file is not None:
     # Display predicted class
     if str(y_predict) in labels_list.keys():
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')
+        st.image(wikipedia.page({labels_list[str(y_predict)][:-6]}).images[0], caption={labels_list[str(y_predict)][:-6]})
         st.markdown(wikipedia.summary({labels_list[str(y_predict)][:-6]}))
         st.page_link(wikipedia.page({labels_list[str(y_predict)][:-6]}).url, label="Wikipedia.com", icon="🌎")
     else:
