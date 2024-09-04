@@ -43,7 +43,7 @@ class_file = open('classes.json', 'r').read()
 labels_list = json.loads(class_file)
 
 st.markdown('Download the Sample Audio here :point_down:')
-st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
+st.page_link("https://dibird.com/", label="DiBird.com", icon="🐦")
 st.subheader('Scientific Name of 114 Birds Species :bird:')
 
 with st.container(height=300):
@@ -66,7 +66,7 @@ if audio_file is not None:
     if str(y_predict) in labels_list.keys():
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')
         st.markdown(wikipedia.summary({labels_list[str(y_predict)][:-6]}))
-        st.markdown(wikipedia.page({labels_list[str(y_predict)][:-6]}).content)
+        st.page_link(wikipedia.page({labels_list[str(y_predict)][:-6]}).url, label="Wikipedia.com", icon="🌎")
     else:
         st.write('Class not Found')      
 else:
