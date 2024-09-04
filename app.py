@@ -15,7 +15,7 @@ from audio_processing import extract_features
 
 
 st.header('Bird Species Classification')
-st.markdown('Sound of 114 Species of Birds :bird: :penguin: :hatched_chick:')
+st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
 
 # Decorator for caching function results
@@ -43,7 +43,7 @@ labels_list = json.loads(class_file)
 
 st.markdown('Download the Sample Audio here :point_down:')
 st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
-st.subheader('Scientific Name of 114 Species of Birds :bird:')
+st.subheader('Scientific Name of 114 Birds Species :bird:')
 
 with st.container(height=300):
     st.markdown(list(labels_list.values()))
