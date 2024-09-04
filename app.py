@@ -66,6 +66,7 @@ if audio_file is not None:
     if str(y_predict) in labels_list.keys():
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')
         st.markdown(wikipedia.summary({labels_list[str(y_predict)][:-6]}))
+        st.markdown(wikipedia.page({labels_list[str(y_predict)][:-6]}).content)
     else:
         st.write('Class not Found')      
 else:
