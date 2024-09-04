@@ -44,10 +44,11 @@ labels_list = json.loads(class_file)
 st.markdown('Download the Sample Audio here :point_down:')
 st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
 st.subheader('Scientific Name of 114 Species of Birds :bird:')
-# with st.container(height=300):
-#     st.markdown(list(labels_list.values()))
-birds = pd.DataFrame(class_file)
-st.table(birds)
+
+with st.container(height=300):
+    st.markdown(list(labels_list.values()))
+# birds = pd.DataFrame(class_file)
+# st.table(birds)
 st.header('', divider='rainbow')
 
 if audio_file is not None:
