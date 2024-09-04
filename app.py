@@ -7,6 +7,7 @@ import tempfile
 import json
 import pandas as pd
 from joblib import dump, load
+import wikipedia
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
 # import soundfile as sf
@@ -61,6 +62,7 @@ if audio_file is not None:
     audio_signals(file_path)
     # Predict the class
     y_predict = predict_class(file_path, model)
+    st.markdown(wikipedia.summary(y_predict))
     # Display predicted class
     if str(y_predict) in labels_list.keys():
         st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')
