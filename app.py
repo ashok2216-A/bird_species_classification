@@ -46,7 +46,7 @@ st.page_link("https://dibird.com/", label="DiBird.com", icon="🌎")
 st.subheader('Scientific Name of 114 Species of Birds :bird:')
 # with st.container(height=300):
 #     st.markdown(list(labels_list.values()))
-birds = pd.DataFrame(list(json_data.items()), columns=['ID', 'Birds'])
+birds = pd.DataFrame(list(class_file.items()), columns=['ID', 'Birds'])
 st.table(birds)
 st.header('', divider='rainbow')
 
