@@ -16,11 +16,6 @@ from audio_analysis import audio_signals
 from audio_processing import extract_features
 
 
-# image = Image.open('logo.png')
-st.header('Bird Species Classification')
-st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
-st.header('', divider='rainbow')
-
 st.set_page_config(
     page_title="BirdSense",
     page_icon=":bird:",
@@ -32,6 +27,12 @@ st.set_page_config(
         'About': "https://ashok2216-myportfolio-github-io.vercel.app/"
     }
 )
+
+# image = Image.open('logo.png')
+st.header('Bird Species Classification')
+st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
+st.header('', divider='rainbow')
+
 
 image = Image.open('logo.png')
 st.image(
