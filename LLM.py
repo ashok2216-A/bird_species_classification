@@ -43,7 +43,7 @@ top_p = st.sidebar.slider("Top-p (nucleus sampling)", 0.1, 1.0, 0.95)
 # Reset conversation button
 def reset_conversation():
     st.session_state.messages = []
-    st.session_state.model = selected_model
+    st.session_state.model = model_links.keys()
 
 st.sidebar.button('Reset Chat', on_click=reset_conversation)
 
