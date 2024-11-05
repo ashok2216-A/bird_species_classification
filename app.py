@@ -91,7 +91,7 @@ if audio_file is not None:
 
         if user_input := f"Explain about {labels_list[str(y_predict)][:-6]} bird":
         # Generate and display assistant response
-            response = LLM.respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
+            response = LLM.respond(user_input, st.session_state.messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
             st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
             st.rerun()
