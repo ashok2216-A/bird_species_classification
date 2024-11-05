@@ -32,14 +32,10 @@ image = Image.open('logo.PNG')
 st.image(
     image, width=250
 )
-# image = Image.open('logo.png')
 st.subheader('Bird Species Classification')
 # st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
-# with st.sidebar:
-#     Refresh = st.button('Update Map', key=1)
-   
-# Decorator for caching function results
+
 @st.cache_data
 def loaded_model(model_path):
     return load_model(model_path)
@@ -96,9 +92,9 @@ if audio_file is not None:
             response = LLM.respond(user_input, st.session_state.messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
             st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
-st.rerun()
+
     else:
         st.write('Class not Found')      
 else:
     st.markdown('File not Found!')
-    
+st.rerun()
