@@ -86,15 +86,12 @@ if audio_file is not None:
         st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=150)
         st.markdown(wikipedia.summary(pred))
         
-
         if user_input := f"Explain about {pred} bird":
         # Generate and display assistant response   
             response = LLM.respond(user_input, st.session_state.messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
             st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
-
     else:
         st.write('Class not Found')      
 else:
     st.markdown('File not Found!')
-st.rerun()
