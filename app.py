@@ -28,7 +28,7 @@ st.set_page_config(
 )
 image = Image.open('logo.png')
 st.image(
-    image, width=100
+    image, width=50
 )
 # image = Image.open('logo.png')
 st.header('Bird Species Classification')
