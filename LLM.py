@@ -25,7 +25,7 @@ model_info = {
 }
 
 # Sidebar for model selection
-selected_model = st.sidebar.selectbox('Select Model', list(model_links.keys()))
+# selected_model = st.sidebar.selectbox('Select Model', list(model_links.keys()))
 client = InferenceClient(model_links[selected_model])
 
 # Sidebar settings
