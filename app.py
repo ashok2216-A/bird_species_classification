@@ -19,7 +19,6 @@ from audio_processing import extract_features
 st.set_page_config(
     page_title="BirdSense",
     page_icon=":bird:",
-    layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': 'https://ashok2216-myportfolio-github-io.vercel.app/#contact',
