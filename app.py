@@ -90,10 +90,10 @@ if audio_file is not None:
 
         if user_input := f"Explain about {labels_list[str(y_predict)][:-6]} bird":
         # Generate and display assistant response
-        response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-        st.markdown(response)
-        st.session_state.messages.append({"role": "assistant", "content": response})
-        st.rerun()
+            response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
+            st.markdown(response)
+            st.session_state.messages.append({"role": "assistant", "content": response})
+            st.rerun()
         
     else:
         st.write('Class not Found')      
