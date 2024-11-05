@@ -5,7 +5,6 @@ import streamlit as st
 from huggingface_hub import InferenceApi, login, InferenceClient
 
 
-
 # Get the Hugging Face token from environment variables
 load_dotenv()
 hf_token = os.getenv("HF_TOKEN")
@@ -27,25 +26,25 @@ model_info = {
 }
 
 # Sidebar for model selection
-st.sidebar.image(model_info['Zephyr-7B']['logo'])
-selected_model = st.sidebar.selectbox("Select Model", model_links.keys())
-st.sidebar.write(f"You're now chatting with **{selected_model}**")
-st.sidebar.markdown(model_info[selected_model]['description'])
+# st.sidebar.image(model_info['Zephyr-7B']['logo'])
+# selected_model = st.sidebar.selectbox("Select Model", model_links.keys())
+# st.sidebar.write(f"You're now chatting with **{selected_model}**")
+# st.sidebar.markdown(model_info[selected_model]['description'])
 
 # Inference API Initialization
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 # Sidebar settings
-max_tokens = st.sidebar.slider("Max new tokens", 1, 2048, 512)
-temperature = st.sidebar.slider("Temperature", 0.1, 4.0, 0.7)
-top_p = st.sidebar.slider("Top-p (nucleus sampling)", 0.1, 1.0, 0.95)
+# max_tokens = st.sidebar.slider("Max new tokens", 1, 2048, 512)
+# temperature = st.sidebar.slider("Temperature", 0.1, 4.0, 0.7)
+# top_p = st.sidebar.slider("Top-p (nucleus sampling)", 0.1, 1.0, 0.95)
 
 # Reset conversation button
 def reset_conversation():
     st.session_state.messages = []
-    st.session_state.model = selected_model
+    st.session_state.model = model_links.keys()
 
-st.sidebar.button('Reset Chat', on_click=reset_conversation)
+# st.sidebar.button('Reset Chat', on_click=reset_conversation)
 
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
@@ -88,16 +87,16 @@ def respond(message, history, max_tokens, temperature, top_p):
     return response
 
 
-# User input
-if user_input := st.chat_input("Ask a health question..."):
-    # Display user message
-    with st.chat_message("user"):
-        st.markdown(user_input)
-    st.session_state.messages.append({"role": "user", "content": user_input})
+# # User input
+# if user_input := st.chat_input("Ask a health question..."):
+#     # Display user message
+#     with st.chat_message("user"):
+#         st.markdown(user_input)
+#     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Generate and display assistant response
-    response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
-    st.rerun()
+#     # Generate and display assistant response
+#     response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
+#     with st.chat_message("assistant"):
+#         st.markdown(response)
+#     st.session_state.messages.append({"role": "assistant", "content": response})
+#     st.rerun()
