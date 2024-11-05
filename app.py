@@ -99,5 +99,3 @@ if audio_file is not None:
 else:
     st.markdown('File not Found!')
     
-if __name__ == "__main__": 
-    LLM.main()
