@@ -36,7 +36,7 @@ def reset_conversation():
     st.session_state.messages = []
     st.session_state.model = selected_model
 
-st.button('Reset Chat', on_click=reset_conversation)
+st.sidebar.button('Reset Chat', on_click=reset_conversation)
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
     st.session_state.messages = [
