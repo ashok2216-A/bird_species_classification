@@ -15,10 +15,21 @@ from audio_analysis import audio_signals
 from audio_processing import extract_features
 
 
+image = Image.open('logo.png')
 st.header('Bird Species Classification')
 st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
 
+st.set_page_config(
+    layout="wide"
+)
+image = Image.open('logo.png')
+st.image(
+    image, width=150
+)
+# with st.sidebar:
+#     Refresh = st.button('Update Map', key=1)
+   
 # Decorator for caching function results
 @st.cache_data
 def loaded_model(model_path):
