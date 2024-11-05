@@ -89,15 +89,9 @@ if audio_file is not None:
         st.page_link(wikipedia.page({labels_list[str(y_predict)][:-6]}).url, label="Explore more in Wikipedia.com", icon="🌎")
 
         if user_input := f"Explain about {labels_list[str(y_predict)][:-6]} bird":
-        # Display user message
-        with st.chat_message("user"):
-            st.markdown(user_input)
-        st.session_state.messages.append({"role": "user", "content": user_input})
-    
         # Generate and display assistant response
         response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-        with st.chat_message("assistant"):
-            st.markdown(response)
+        st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.rerun()
         
