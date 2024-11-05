@@ -13,20 +13,6 @@ if hf_token is None:
 # Authenticate with Hugging Face
 login(hf_token)
 
-# User input
-if user_input := st.chat_input("Ask a health question..."):
-    # Display user message
-    with st.chat_message("user"):
-        st.markdown(user_input)
-    st.session_state.messages.append({"role": "user", "content": user_input})
-
-    # Generate and display assistant response
-    response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
-
-
 
 # Model information and links
 model_links = {
