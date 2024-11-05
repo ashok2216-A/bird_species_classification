@@ -5,6 +5,7 @@ import librosa
 import streamlit as st
 import tempfile
 import json
+from PIL import Image
 import pandas as pd
 from joblib import dump, load
 import wikipedia
