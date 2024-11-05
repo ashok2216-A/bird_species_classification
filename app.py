@@ -8,7 +8,7 @@ import json
 from PIL import Image
 import pandas as pd
 from joblib import dump, load
-import Wikipedia
+# import Wikipedia
 import wikipediaapi
 import LLM
 from sklearn.preprocessing import LabelEncoder
