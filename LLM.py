@@ -1,5 +1,5 @@
 import os
-import dotenv import load_dotenv
+from dotenv import load_dotenv
 import json
 import streamlit as st
 from huggingface_hub import InferenceApi, login, InferenceClient
