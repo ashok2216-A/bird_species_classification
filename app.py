@@ -8,8 +8,8 @@ import json
 from PIL import Image
 import pandas as pd
 from joblib import dump, load
-# import Wikipedia
-import wikipediaapi
+import wikipedia
+# import wikipediaapi
 import LLM
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
@@ -84,11 +84,10 @@ if audio_file is not None:
     y_predict = predict_class(file_path, model)
     # Display predicted class
     if str(y_predict) in labels_list.keys():
-        st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')
-        wiki = wikipediaapi.Wikipedia('en')
-        st.image(wiki.page({labels_list[str(y_predict)][:-6]}).images[0], caption=labels_list[str(y_predict)][:-6], width=150)
-        st.markdown(wiki.summary({labels_list[str(y_predict)][:-6]}))
-        st.page_link(wiki.page({labels_list[str(y_predict)][:-6]}).url, label="Explore more in Wikipedia.com", icon="🌎")
+        st.subheader(f'Predicted Class: :rainbow[{labels_list[str(y_predict)][:-6]}]')       
+        st.image(wikipedia.page({labels_list[str(y_predict)][:-6]}).images[0], caption=labels_list[str(y_predict)][:-6], width=150)
+        st.markdown(wikipedia.summary({labels_list[str(y_predict)][:-6]}))
+        st.page_link(wikipedia.page({labels_list[str(y_predict)][:-6]}).url, label="Explore more in Wikipedia.com", icon="🌎")
 
         if user_input := f"Explain about {labels_list[str(y_predict)][:-6]} bird":
         # Generate and display assistant response
