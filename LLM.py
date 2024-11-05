@@ -10,7 +10,8 @@ st.set_page_config(page_title="Medical Chatbot")
 st.title("Medical Chatbot 🤖")
 st.subheader("", divider='rainbow')
 # Get the Hugging Face token from environment variables
-hf_token = st.secrets["HF_TOKEN"]
+load_dotenv()
+hf_token = os.getenv()
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
