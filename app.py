@@ -28,10 +28,10 @@ st.set_page_config(
 )
 image = Image.open('logo.PNG')
 st.image(
-    image, width=200
+    image, width=250
 )
 # image = Image.open('logo.png')
-st.header('Bird Species Classification')
+st.subheader('Bird Species Classification')
 st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
 # with st.sidebar:
