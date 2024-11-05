@@ -26,17 +26,14 @@ st.set_page_config(
         'About': "https://ashok2216-myportfolio-github-io.vercel.app/"
     }
 )
-
-# image = Image.open('logo.png')
-st.header('Bird Species Classification')
-st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
-st.header('', divider='rainbow')
-
-
 image = Image.open('logo.png')
 st.image(
     image, width=150
 )
+# image = Image.open('logo.png')
+st.header('Bird Species Classification')
+st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
+st.header('', divider='rainbow')
 # with st.sidebar:
 #     Refresh = st.button('Update Map', key=1)
    
