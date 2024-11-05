@@ -32,7 +32,7 @@ st.image(
 )
 # image = Image.open('logo.png')
 st.subheader('Bird Species Classification')
-st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
+# st.markdown('Sound of 114 Bird Species :bird: :penguin: :hatched_chick:')
 st.header('', divider='rainbow')
 # with st.sidebar:
 #     Refresh = st.button('Update Map', key=1)
