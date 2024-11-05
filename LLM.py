@@ -99,4 +99,3 @@ if user_input := st.chat_input("Ask a health question..."):
     with st.chat_message("assistant"):
         st.markdown(response)
     st.session_state.messages.append({"role": "assistant", "content": response})
-    st.rerun()
