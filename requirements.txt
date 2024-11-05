@@ -10,3 +10,4 @@ seaborn==0.12.2
 pandas==2.2.0
 tensorflow==2.17.0
 wikipedia==1.4.0
+huggingface-hub==0.26.2
