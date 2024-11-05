@@ -96,7 +96,7 @@ if audio_file is not None:
             response = LLM.respond(user_input, st.session_state.messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
             st.markdown(response)
             st.session_state.messages.append({"role": "assistant", "content": response})
-        st.rerun()
+st.rerun()
     else:
         st.write('Class not Found')      
 else:
