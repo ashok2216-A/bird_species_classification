@@ -43,14 +43,14 @@ top_p = st.sidebar.slider("Top-p (nucleus sampling)", 0.1, 1.0, 0.95)
 # Reset conversation button
 def reset_conversation():
     st.session_state.messages = []
-    st.session_state.model = model_links.keys()
+    st.session_state.model = selected_model
 
 st.sidebar.button('Reset Chat', on_click=reset_conversation)
 
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
+        {"role": "system", "content": "You are a knowledgeable and empathetic medical assistant providing accurate and compassionate health advice based on user input."}
     ]
 
 # Display chat history
@@ -88,16 +88,16 @@ def respond(message, history, max_tokens, temperature, top_p):
     return response
 
 
-# # User input
-# if user_input := st.chat_input("Ask a health question..."):
-#     # Display user message
-#     with st.chat_message("user"):
-#         st.markdown(user_input)
-#     st.session_state.messages.append({"role": "user", "content": user_input})
+# User input
+if user_input := st.chat_input("Ask a health question..."):
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(user_input)
+    st.session_state.messages.append({"role": "user", "content": user_input})
 
-#     # Generate and display assistant response
-#     response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-#     with st.chat_message("assistant"):
-#         st.markdown(response)
-#     st.session_state.messages.append({"role": "assistant", "content": response})
-#     st.rerun()
+    # Generate and display assistant response
+    response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.rerun()
