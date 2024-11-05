@@ -20,13 +20,19 @@ model_links = {
 model_info = {
     "Zephyr-7B": {
         'description': """Zephyr 7B is a Huggingface model, fine-tuned for helpful and instructive interactions.""",
+        # 'logo': 'https://huggingface.co/HuggingFaceH4/zephyr-7b-gemma-v0.1/resolve/main/thumbnail.png'
         'logo': 'https://huggingface.co/HuggingFaceH4/zephyr-7b-alpha/resolve/main/thumbnail.png'
     }
 }
 
 # Sidebar for model selection
-# selected_model = st.sidebar.selectbox('Select Model', list(model_links.keys()))
-client = InferenceClient(model_links['Zephyr-7B'])
+st.sidebar.image(model_info['Zephyr-7B']['logo'])
+selected_model = st.sidebar.selectbox("Select Model", model_links.keys())
+st.sidebar.write(f"You're now chatting with **{selected_model}**")
+st.sidebar.markdown(model_info[selected_model]['description'])
+
+# Inference API Initialization
+client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 # Sidebar settings
 max_tokens = st.sidebar.slider("Max new tokens", 1, 2048, 512)
@@ -43,7 +49,7 @@ st.sidebar.button('Reset Chat', on_click=reset_conversation)
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate information about birds based on user input."}
+        {"role": "system", "content": "You are a knowledgeable and empathetic medical assistant providing accurate and compassionate health advice based on user input."}
     ]
 
 # Display chat history
@@ -79,6 +85,7 @@ def respond(message, history, max_tokens, temperature, top_p):
         response_container.text(response)  # Stream the response
 
     return response
+
 
 # User input
 if user_input := st.chat_input("Ask a health question..."):
