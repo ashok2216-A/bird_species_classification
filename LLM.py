@@ -86,16 +86,16 @@ def respond(message, history, max_tokens, temperature, top_p):
 
     return response
 
-# User input
-if user_input := st.chat_input("Ask a health question..."):
-    # Display user message
-    with st.chat_message("user"):
-        st.markdown(user_input)
-    st.session_state.messages.append({"role": "user", "content": user_input})
+# # User input
+# if user_input := st.chat_input("Ask a health question..."):
+#     # Display user message
+#     with st.chat_message("user"):
+#         st.markdown(user_input)
+#     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Generate and display assistant response
-    response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
-    st.rerun()
+#     # Generate and display assistant response
+#     response = respond(user_input, st.session_state.messages, max_tokens, temperature, top_p)
+#     with st.chat_message("assistant"):
+#         st.markdown(response)
+#     st.session_state.messages.append({"role": "assistant", "content": response})
+#     st.rerun()
