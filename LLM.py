@@ -25,11 +25,8 @@ model_info = {
     }
 }
 
-# Sidebar for model selection
-st.sidebar.image(model_info['Zephyr-7B']['logo'])
-selected_model = st.sidebar.selectbox("Select Model", model_links.keys())
-st.sidebar.write(f"You're now chatting with **{selected_model}**")
-st.sidebar.markdown(model_info[selected_model]['description'])
+
+selected_model = model_links.keys()
 
 # Inference API Initialization
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
