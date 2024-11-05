@@ -34,7 +34,7 @@ def reset_conversation():
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic medical assistant providing accurate and compassionate health advice based on user input."}
+        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
     ]
 
 # Display chat history
