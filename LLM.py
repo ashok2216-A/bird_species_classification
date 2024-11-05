@@ -4,7 +4,7 @@ import json
 import streamlit as st
 from huggingface_hub import InferenceApi, login, InferenceClient
 
-def main():
+if __name__ == "__main__":
     # Get the Hugging Face token from environment variables
     load_dotenv()
     hf_token = os.getenv("HF_TOKEN")
@@ -93,6 +93,3 @@ def main():
             st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.rerun()
-
-if __name__ == "__main__":
-    main()
