@@ -11,7 +11,7 @@ st.title("Medical Chatbot 🤖")
 st.subheader("", divider='rainbow')
 # Get the Hugging Face token from environment variables
 load_dotenv()
-hf_token = os.getenv()
+hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
