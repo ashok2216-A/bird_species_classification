@@ -26,7 +26,7 @@ model_info = {
 
 # Sidebar for model selection
 # selected_model = st.sidebar.selectbox('Select Model', list(model_links.keys()))
-client = InferenceClient(model_links[selected_model])
+client = InferenceClient(model_links['Zephyr-7B'])
 
 # Sidebar settings
 max_tokens = st.sidebar.slider("Max new tokens", 1, 2048, 512)
