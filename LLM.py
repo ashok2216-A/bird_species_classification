@@ -31,11 +31,6 @@ selected_model = model_links.keys()
 # Inference API Initialization
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
-# Sidebar settings
-max_tokens = st.sidebar.slider("Max new tokens", 1, 2048, 512)
-temperature = st.sidebar.slider("Temperature", 0.1, 4.0, 0.7)
-top_p = st.sidebar.slider("Top-p (nucleus sampling)", 0.1, 1.0, 0.95)
-
 # Reset conversation button
 def reset_conversation():
     st.session_state.messages = []
@@ -46,7 +41,7 @@ st.sidebar.button('Reset Chat', on_click=reset_conversation)
 # Initialize conversation and chat history
 if 'messages' not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic medical assistant providing accurate and compassionate health advice based on user input."}
+        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
     ]
 
 # Display chat history
