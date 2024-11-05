@@ -12,4 +12,4 @@ tensorflow==2.17.0
 wikipedia==1.4.0
 huggingface-hub==0.26.2
 Wikipedia-API==0.7.1
-dotenv==0.0.5
+python-dotenv==1.0.1
