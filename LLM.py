@@ -32,10 +32,10 @@ def reset_conversation():
     st.session_state.model = 'Zephyr-7B'
 
 # Initialize conversation and chat history
-# if 'messages' not in st.session_state:
-st.session_state.messages = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
-    ]
+if 'messages' not in st.session_state:
+    st.session_state.messages = [
+            {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
+        ]
 
 # Display chat history
 for message in st.session_state.messages:
