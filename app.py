@@ -139,7 +139,7 @@ class App:
     def run(self):
         self.display_logo()
         self.display_intro
-        self.container_heading(labels_list)
+        self.container_heading(self.labels_list)
 
         audio_file_path = self.display_audio_input()
 
