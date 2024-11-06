@@ -55,7 +55,7 @@ from huggingface_hub import InferenceClient
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 messages = [
-	{"role": "system", "content": "what is lion"}
+	{"role": "system", "content": "explain about lion"}
 ]
 # You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input.
 stream = client.chat.completions.create(
