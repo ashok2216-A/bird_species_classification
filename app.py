@@ -172,6 +172,7 @@ if st.button("Send"):
         
         response = ""
         for chunk in stream:
-		token = chunk.choices[0].delta.content
-		response +=	
-		st.markdown(response)
+            token = chunk.choices[0].delta.content
+            response += token
+            st.markdown(response)  # Update response in real-time
+
