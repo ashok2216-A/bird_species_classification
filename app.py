@@ -66,9 +66,9 @@ def reset_conversation():
 messages = reset_conversation()
 
 # Display chat history
-for message in messages:
-    with st.chat_message(message["role"]):
-        print(message["content"])
+# for message in messages:
+#     with st.chat_message(message["role"]):
+#         print(message["content"])
 
 def respond(message, history, max_tokens, temperature, top_p):
     # Prepare the list of messages for the chat completion
