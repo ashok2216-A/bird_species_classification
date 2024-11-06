@@ -237,7 +237,7 @@ if audio_file is not None:
             "top_p": 0.95
         }
         response = inference(prompt, params=parameters)
-        st.markdown(response['generated_text'])
+        st.markdown(response)
 
         st.page_link(wikipedia.page(pred).url, label="Explore more on Wikipedia", icon="🌎")
             
