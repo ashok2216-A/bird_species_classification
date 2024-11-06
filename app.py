@@ -43,7 +43,7 @@ if hf_token is None:
 
 # Authenticate with Hugging Face
 login(hf_token)
-
+hf_api_key = st.secrets["HF_TOKEN"]
 image = Image.open('logo.PNG')
 st.image(
     image, width=250
@@ -69,7 +69,7 @@ def predict_class(audio_path, model):
 @st.cache_data
 def get_bird_details(predicted_class):
     headers = {
-        "Authorization": f"Bearer {hf_token}",
+        "Authorization": f"Bearer {hf_api_key}",
         "Content-Type": "application/json",
     }
     payload = {
