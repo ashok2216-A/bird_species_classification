@@ -69,7 +69,7 @@ def predict_class(audio_path, model):
 @st.cache_data
 def get_bird_details(predicted_class):
     headers = {
-        "Authorization": f"Bearer {hf_api_key}",
+        "Authorization": f"Bearer {hf_token}",
         "Content-Type": "application/json",
     }
     payload = {
