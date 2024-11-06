@@ -136,13 +136,20 @@ from huggingface_hub import InferenceApi, login, InferenceClient
 #         st.write('Class not Found')      
 # else:
 #     st.markdown('File not Found!')
-
 import os
-import json
+import numpy as np
+import warnings
 import librosa
 import streamlit as st
 import tempfile
+import json
 from PIL import Image
+import pandas as pd
+from joblib import dump, load
+import wikipedia
+from tensorflow.keras.models import load_model
+from audio_analysis import audio_signals
+from audio_processing import extract_features
 from huggingface_hub import InferenceApi
 from dotenv import load_dotenv
 
@@ -152,10 +159,10 @@ hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
-# Initialize the Inference API client
-client = InferenceApi(repo_id="HuggingFaceH4/zephyr-7b-beta", token=hf_token)
+# Initialize the Inference API with the model ID and token
+model_id = "HuggingFaceH4/zephyr-7b-beta"
+inference = InferenceApi(repo_id=model_id, token=hf_token)
 
-# Setup Streamlit page
 st.set_page_config(
     page_title="BirdSense",
     page_icon=":bird:",
@@ -167,11 +174,10 @@ st.set_page_config(
     }
 )
 
-# Display logo
 image = Image.open('logo.PNG')
 st.image(image, width=250)
-
 st.subheader('Bird Species Classification')
+st.header('', divider='rainbow')
 
 @st.cache_data
 def loaded_model(model_path):
@@ -194,11 +200,14 @@ model = loaded_model(model_path)
 class_file = open('classes.json', 'r').read()
 labels_list = json.loads(class_file)
 
-# Display sample audio download link
 st.markdown('Download the Sample Audio here :point_down:')
 st.page_link("https://dibird.com/", label="DiBird.com", icon="🐦")
-
 st.subheader('Scientific Name of 114 Birds Species :bird:')
+
+with st.container(height=300):
+    st.markdown(list(labels_list.values()))
+
+st.header('', divider='rainbow')
 
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -207,6 +216,7 @@ if audio_file is not None:
     file_path = tmp_file.name
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
+    audio_signals(file_path)
     
     # Predict the class
     y_predict = predict_class(file_path, model)
@@ -218,16 +228,16 @@ if audio_file is not None:
         st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=200)
         st.markdown(wikipedia.summary(pred))
         
-        # Generate additional bird details using Hugging Face Zephyr API
-        try:
-            response = client(inputs=f"Tell me about the {pred} bird.")
-            st.subheader("Bird Details from Zephyr Model:")
-            st.markdown(response)
-        except Exception as e:
-            st.error(f"Error fetching details from Hugging Face API: {e}")
+        # Generate bird details using Hugging Face model
+        prompt = f"Provide detailed information about {pred} bird."
+        response = inference(prompt)
+        st.markdown(response[0]['generated_text'])
 
+        st.page_link(wikipedia.page(pred).url, label="Explore more on Wikipedia", icon="🌎")
+            
     else:
         st.write('Class not Found')      
 else:
     st.markdown('File not Found!')
+
 
