@@ -130,7 +130,7 @@
 
 import os
 from dotenv import load_dotenv
-from huggingface_hub import InferenceClient
+from huggingface_hub import InferenceApi
 
 # Load environment variables from .env file
 load_dotenv()
@@ -138,8 +138,9 @@ hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
-# Initialize the Inference Client with API key
-client = InferenceClient(api_key=hf_token)
+# Initialize the Inference API with the model ID and token
+model_id = "HuggingFaceH4/zephyr-7b-beta"
+inference = InferenceApi(repo_id=model_id, token=hf_token)
 
 # Define the messages
 messages = [
@@ -156,15 +157,10 @@ for message in messages:
     prompt += f"{message['role']}: {message['content']}\n"
 
 # Send the request to the model
-response = client.generate(
-    prompt=prompt,
-    max_new_tokens=256,
-    temperature=0.7,
-    top_k=50,
-    top_p=0.95
-)
+response = inference(prompt, max_length=256, temperature=0.7, top_k=50, top_p=0.95)
 
 # Print the generated response
-print(response.generated_text)
+print(response[0]['generated_text'])
+
 
 
