@@ -222,7 +222,7 @@ if audio_file is not None:
         try:
             response = client(inputs=f"Tell me about the {pred} bird.")
             st.subheader("Bird Details from Zephyr Model:")
-            st.markdown(response["generated_text"])
+            st.markdown(response)
         except Exception as e:
             st.error(f"Error fetching details from Hugging Face API: {e}")
 
