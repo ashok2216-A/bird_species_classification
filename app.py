@@ -231,7 +231,7 @@ if audio_file is not None:
         # Generate bird details using Hugging Face model
         prompt = f"Provide detailed information about {pred} bird."
         response = inference(prompt)
-        st.markdown(response[0]['generated_text'])
+        st.markdown(response)
 
         st.page_link(wikipedia.page(pred).url, label="Explore more on Wikipedia", icon="🌎")
             
