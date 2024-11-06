@@ -162,8 +162,8 @@ if __name__ == "__main__":
     
     # Example usage
     # If you want to visualize audio signals:
-    file_path = 'your_audio_file_path_here.wav'
-    audio_viz = AudioVisualizer(file_path)
+    # file_path = 'your_audio_file_path_here.wav'
+    audio_viz = AudioVisualizer(audio_file)
     aw, spg = audio_viz.audio_signals()
 
     # For audio feature extraction:
