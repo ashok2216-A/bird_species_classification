@@ -28,6 +28,7 @@ st.set_page_config(
         'About': "https://ashok2216-myportfolio-github-io.vercel.app/"
     }
 )
+
 image = Image.open('logo.PNG')
 st.image(
     image, width=250
