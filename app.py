@@ -138,32 +138,24 @@
 #     st.markdown('File not Found!')
 
 import os
-import numpy as np
-import warnings
+import json
 import librosa
 import streamlit as st
 import tempfile
-import json
 from PIL import Image
-import pandas as pd
-from joblib import dump, load
-import wikipedia
-from huggingface_hub import InferenceApi, login
-from audio_analysis import audio_signals
-from audio_processing import extract_features
+from huggingface_hub import InferenceClient
+from dotenv import load_dotenv
 
-# Load Hugging Face token from environment variable
+# Load environment variables
+load_dotenv()
 hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
-# Authenticate with Hugging Face API
-login(hf_token)
+# Authenticate with Hugging Face
+client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
-# Initialize Hugging Face Inference API for Zephyr model
-client = InferenceApi(repo_id="HuggingFaceH4/zephyr-7b-beta")
-
-# Streamlit configuration
+# Setup Streamlit page
 st.set_page_config(
     page_title="BirdSense",
     page_icon=":bird:",
@@ -175,18 +167,16 @@ st.set_page_config(
     }
 )
 
-# Load image and display
+# Display logo
 image = Image.open('logo.PNG')
 st.image(image, width=250)
-st.subheader('Bird Species Classification')
-st.header('', divider='rainbow')
 
-# Cache for loading the model
+st.subheader('Bird Species Classification')
+
 @st.cache_data
 def loaded_model(model_path):
     return load_model(model_path)
 
-# Predict the bird class based on the audio
 @st.cache_data
 def predict_class(audio_path, model):
     extracted_feature = extract_features(audio_path)
@@ -195,26 +185,21 @@ def predict_class(audio_path, model):
     predicted_class_index = np.argmax(prediction)
     return predicted_class_index
 
-# File uploader for audio
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 
 # Load the model
 model_path = 'bird_audio_classification_model.h5'
 model = loaded_model(model_path)
 
-# Load the class labels
 class_file = open('classes.json', 'r').read()
 labels_list = json.loads(class_file)
 
-# Display the sample audio download link
+# Display sample audio download link
 st.markdown('Download the Sample Audio here :point_down:')
 st.page_link("https://dibird.com/", label="DiBird.com", icon="🐦")
+
 st.subheader('Scientific Name of 114 Birds Species :bird:')
 
-with st.container(height=300):
-    st.markdown(list(labels_list.values()))
-
-# Process uploaded audio file and predict the bird species
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(audio_file.read())
@@ -222,37 +207,29 @@ if audio_file is not None:
     file_path = tmp_file.name
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
-    audio_signals(file_path)
-
-    # Predict the class of the bird species
+    
+    # Predict the class
     y_predict = predict_class(file_path, model)
     
+    # Display predicted class
     if str(y_predict) in labels_list.keys():
-        predicted_class = labels_list[str(y_predict)][:-6]
-        st.subheader(f'Predicted Class: :rainbow[{predicted_class}]') 
+        pred = labels_list[str(y_predict)][:-6]
+        st.subheader(f'Predicted Class: :rainbow[{pred}]') 
+        st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=200)
+        st.markdown(wikipedia.summary(pred))
         
-        # Fetch bird details from Wikipedia
+        # Generate additional bird details using Hugging Face Zephyr API
         try:
-            bird_summary = wikipedia.summary(predicted_class, sentences=2)
-            st.markdown(bird_summary)
-        except wikipedia.exceptions.DisambiguationError as e:
-            st.write("Multiple results found. Please be more specific.")
-        
-        # Display bird image from Wikipedia
-        try:
-            st.image(wikipedia.page(predicted_class).images[0], caption=predicted_class, width=200)
+            response = client.completion(
+                model="HuggingFaceH4/zephyr-7b-beta",
+                inputs=f"Tell me about the {pred} bird."
+            )
+            st.subheader("Bird Details from Zephyr Model:")
+            st.markdown(response["choices"][0]["text"])
         except Exception as e:
-            st.write("Image not available.")
-        
-        # Call Zephyr model for more detailed information (optional)
-        response = client(inputs=f"Tell me about the {predicted_class} bird.")
-        st.subheader("More Details from Zephyr Model:")
-        st.write(response["generated_text"])
-        
-        # Provide a link to Wikipedia for further exploration
-        st.page_link(wikipedia.page(predicted_class).url, label="Explore more on Wikipedia", icon="🌎")
+            st.error(f"Error fetching details from Hugging Face API: {e}")
+
     else:
-        st.write('Class not Found')
+        st.write('Class not Found')      
 else:
     st.markdown('File not Found!')
-
