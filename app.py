@@ -30,6 +30,16 @@ st.set_page_config(
     }
 )
 
+
+# Load environment variables
+load_dotenv()
+hf_token = os.getenv("HF_TOKEN")
+if hf_token is None:
+    raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
+
+# Authenticate with Hugging Face
+login(hf_token)
+
 image = Image.open('logo.PNG')
 st.image(
     image, width=250
