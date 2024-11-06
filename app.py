@@ -173,7 +173,7 @@ if audio_file is not None:
         user_input = f"Explain about {pred} bird"
         # Generate and display assistant response   
         if user_input:
-            response = LLM.respond(user_input, messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
+            response = respond(user_input, messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
             st.markdown(response)
             messages.append({"role": "assistant", "content": response})
             st.page_link(wikipedia.page(pred).url, label="Explore more in Wikipedia.com", icon="🌎")
