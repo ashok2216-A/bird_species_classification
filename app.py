@@ -42,10 +42,9 @@ load_dotenv()
 hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
-
 # Authenticate with Hugging Face
 login(hf_token)
-hf_api_key = st.secrets["HF_TOKEN"]
+
 image = Image.open('logo.PNG')
 st.image(
     image, width=250
@@ -68,27 +67,6 @@ def predict_class(audio_path, model):
     # predicted_class_label = label_encoder.inverse_transform([predicted_class_index])[0]
     return predicted_class_index
 
-@st.cache_data
-def get_bird_details(predicted_class):
-    headers = {
-        "Authorization": f"Bearer {hf_token}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "inputs": f"Tell me about the bird species {predicted_class}",
-    }
-
-    response = requests.post(
-        "https://api-inference.huggingface.co/models/zephyr",
-        headers=headers,
-        json=payload
-    )
-
-    if response.status_code == 200:
-        return response.json()[0]['generated_text']
-    else:
-        st.error("Failed to retrieve bird details from Zephyr.")
-        return None
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 # Load the model
