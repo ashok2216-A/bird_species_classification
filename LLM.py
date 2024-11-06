@@ -67,6 +67,6 @@ def respond(message, history, max_tokens, temperature, top_p):
     ):
         token = message.choices[0].delta.content
         response += token
-        response_container.text(response)  # Stream the response
+        # response_container.text(response)  # Stream the response
 
-    return
+    return response
