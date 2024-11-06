@@ -81,7 +81,7 @@ class App:
         self.bird_classifier = bird_classifier
         self.assistant = assistant
         self.image = Image.open('logo.PNG')
-        self.labels_list = labels_list
+        self.labels_list = bird_classifier.labels_list  # Fix the reference here
         st.set_page_config(
             page_title="BirdSense",
             page_icon=":bird:",
@@ -92,7 +92,7 @@ class App:
                 'About': "https://ashok2216-myportfolio-github-io.vercel.app/"
             }
         )
-    
+
     def display_logo(self):
         st.image(self.image, width=250)
     
