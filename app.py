@@ -104,7 +104,7 @@ class App:
         st.page_link("https://dibird.com/", label="DiBird.com", icon="🐦")
         st.subheader('Scientific Name of 114 Birds Species :bird:')
         with st.container(height=300):
-            st.markdown(list(labels_list.values()))
+            st.markdown(list(self.labels_list.values()))
         st.header('', divider='rainbow')
     
     def display_audio_input(self):
