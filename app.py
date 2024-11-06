@@ -101,7 +101,7 @@ if audio_file is not None:
         st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=200)
         st.markdown(wikipedia.summary(pred))
         
-        user_input = f"Explain about {pred} bird":
+        user_input = f"Explain about {pred} bird"
         # Generate and display assistant response   
         if user_input:
             response = LLM.respond(user_input, messages, max_tokens = 500, temperature = 0.70, top_p = 0.95)
