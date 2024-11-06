@@ -220,12 +220,11 @@ if audio_file is not None:
         
         # Generate additional bird details using Hugging Face Zephyr API
         try:
-            response = client.completion(
-                model="HuggingFaceH4/zephyr-7b-beta",
-                inputs=f"Tell me about the {pred} bird."
-            )
+            response = client({
+                "inputs": f"Tell me about the {pred} bird."
+            })
             st.subheader("Bird Details from Zephyr Model:")
-            st.markdown(response["choices"][0]["text"])
+            st.markdown(response["generated_text"])
         except Exception as e:
             st.error(f"Error fetching details from Hugging Face API: {e}")
 
