@@ -99,12 +99,12 @@ class App:
         st.subheader('Bird Species Classification')
         st.header('', divider='rainbow')
 
-    def container_heading(self):
+    def container_heading(self, labels_list):
         st.markdown('Download the Sample Audio here :point_down:')
         st.page_link("https://dibird.com/", label="DiBird.com", icon="🐦")
         st.subheader('Scientific Name of 114 Birds Species :bird:')
         with st.container(height=300):
-            st.markdown(list(self.labels_list.values()))
+            st.markdown(list(labels_list.values()))
         st.header('', divider='rainbow')
     
     def display_audio_input(self):
