@@ -8,7 +8,7 @@ import json
 from PIL import Image
 import pandas as pd
 from joblib import dump, load
-import Wikipedia
+import wikipedia
 import requests
 # import wikipediaapi
 # import LLM
