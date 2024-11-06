@@ -102,9 +102,6 @@ if audio_file is not None:
         st.subheader(f'Predicted Class: :rainbow[{pred}]') 
         st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=200)
         st.markdown(wikipedia.summary(pred))
-        get_bird_details(pred)
-        st.subheader(f'Predicted Class: {pred}')
-        st.markdown(bird_details)
         
         if user_input := f"Explain about {pred} bird":
         # Generate and display assistant response   
