@@ -119,7 +119,7 @@ prompt = "explain about lion"
 response = client.text_generation(prompt, max_new_tokens=500)
 
 # Print the generated response
-print(response)
+st.markdown(response)
 @st.cache_data
 def loaded_model(model_path):
     return load_model(model_path)
