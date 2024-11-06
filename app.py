@@ -64,7 +64,7 @@ stream = client.chat.completions.create(
 	max_tokens=500,
 	stream=True
 )
-st.markdown(stream)
+st.markdown(stream.choices[0].delta.content)
 # for chunk in stream:
     # st.markdown(print(chunk.choices[0].delta.content, end=""))
 	
