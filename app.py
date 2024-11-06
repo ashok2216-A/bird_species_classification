@@ -150,18 +150,21 @@ messages = [
     {"role": "user", "content": "How many helicopters can a human eat in one sitting?"},
 ]
 
+# Concatenate the messages to form the prompt
+prompt = ""
+for message in messages:
+    prompt += f"{message['role']}: {message['content']}\n"
+
 # Send the request to the model
-response = client.chat_completions.create(
-    model="HuggingFaceH4/zephyr-7b-beta", 
-    messages=messages, 
-    max_tokens=256,
+response = client.generate(
+    prompt=prompt,
+    max_new_tokens=256,
     temperature=0.7,
     top_k=50,
     top_p=0.95
 )
 
 # Print the generated response
-for chunk in response:
-    print(chunk.choices[0].delta.content, end="")
+print(response.generated_text)
 
 
