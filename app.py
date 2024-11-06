@@ -66,7 +66,7 @@ stream = client.chat.completions.create(
 )
 
 for chunk in stream:
-    st.markdown(chunk.choices[0].delta.content)
+    st.markdown(chunk.choices[0].delta.content, end="")
 	
 @st.cache_data
 def loaded_model(model_path):
