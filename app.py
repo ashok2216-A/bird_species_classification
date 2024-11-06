@@ -162,12 +162,12 @@ if __name__ == "__main__":
     # Example usage
     # If you want to visualize audio signals:
     # file_path = 'your_audio_file_path_here.wav'
-    audio_viz = AudioVisualizer(tmp_file)
+    audio_viz = AudioVisualizer(audio_file)
     aw, spg = audio_viz.audio_signals()
 
     # For audio feature extraction:
     # data_dir = '/path/to/your/audio/dataset'  # Specify the path to your dataset
-    audio_extractor = AudioFeatureExtractor(tmp_file)
+    audio_extractor = AudioFeatureExtractor(audio_file)
     features, labels = audio_extractor.load_data_and_extract_features()
 
     # Optionally, check the features and labels:
