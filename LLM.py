@@ -28,7 +28,7 @@ client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 # Reset conversation button
 # def reset_conversation():
-st.session_state.messages = []
+# st.session_state.messages = []
 st.session_state.model = 'Zephyr-7B'
 
 # Initialize conversation and chat history
