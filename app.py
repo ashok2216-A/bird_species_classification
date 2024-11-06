@@ -129,7 +129,6 @@
 #     st.markdown('File not Found!')
 
 import os
-import streamlit as st
 from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
 
@@ -142,37 +141,27 @@ if hf_token is None:
 # Initialize the Inference Client with API key
 client = InferenceClient(api_key=hf_token)
 
-# Set page configuration
-st.set_page_config(
-    page_title="Hugging Face Chatbot",
-    page_icon=":robot_face:",
-    layout="wide"
+# Define the messages
+messages = [
+    {
+        "role": "system",
+        "content": "You are a friendly chatbot who always responds in the style of a pirate",
+    },
+    {"role": "user", "content": "How many helicopters can a human eat in one sitting?"},
+]
+
+# Send the request to the model
+response = client.chat_completions.create(
+    model="HuggingFaceH4/zephyr-7b-beta", 
+    messages=messages, 
+    max_tokens=256,
+    temperature=0.7,
+    top_k=50,
+    top_p=0.95
 )
 
-st.title("Hugging Face Chatbot")
-st.sidebar.title("Settings")
+# Print the generated response
+for chunk in response:
+    print(chunk.choices[0].delta.content, end="")
 
-# Sidebar settings
-max_tokens = st.sidebar.slider("Max tokens", 1, 500, 100)
-
-# User input
-user_input = st.text_input("You:", key="user_input")
-
-if st.button("Send"):
-    if user_input:
-        response_container = st.empty()  # Placeholder to update the response text dynamically
-        
-        # Stream response
-        stream = client.chat.completions.create(
-            model="HuggingFaceH4/zephyr-7b-beta", 
-            messages=[{"role": "user", "content": user_input}], 
-            max_tokens=max_tokens,
-            stream=True
-        )
-        
-        response = ""
-        for chunk in stream:
-            token = chunk.choices[0].delta.content
-            response += token
-            st.markdown(response)  # Update response in real-time
 
