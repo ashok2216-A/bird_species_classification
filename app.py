@@ -81,6 +81,7 @@ class App:
         self.bird_classifier = bird_classifier
         self.assistant = assistant
         self.image = Image.open('logo.PNG')
+        self.labels_list = labels_list
         st.set_page_config(
             page_title="BirdSense",
             page_icon=":bird:",
