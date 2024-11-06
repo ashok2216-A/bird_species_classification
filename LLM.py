@@ -69,4 +69,4 @@ def respond(message, history, max_tokens, temperature, top_p):
         response += token
         response_container.text(response)  # Stream the response
 
-    return response
+    return
