@@ -155,7 +155,7 @@ from audio_analysis import audio_signals
 from audio_processing import extract_features
 
 # Hugging Face API details
-HUGGING_FACE_API_URL = "https://api-inference.huggingface.co/models/your-zephyr-model"
+HUGGING_FACE_API_URL = "https://api-inference.huggingface.co/models/zephyr-7b-beta"
 HUGGING_FACE_ACCESS_TOKEN = "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"
 
 # Hugging Face API call function
