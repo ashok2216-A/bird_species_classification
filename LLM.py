@@ -76,6 +76,12 @@ import json
 import streamlit as st
 from huggingface_hub import InferenceApi, login, InferenceClient
 
+# Initialize Streamlit session state for messages
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
+    ]
+
 # Load environment variables
 load_dotenv()
 hf_token = os.getenv("HF_TOKEN")
@@ -98,12 +104,6 @@ model_info = {
 
 # Inference API Initialization
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
-
-# Initialize session state for messages
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
-    ]
 
 # Reset conversation function
 def reset_conversation():
