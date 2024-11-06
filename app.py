@@ -82,7 +82,7 @@ if audio_file is not None:
     if str(y_predict) in labels_list.keys():
         pred = labels_list[str(y_predict)][:-6]
         st.subheader(f'Predicted Class: :rainbow[{pred}]') 
-        st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=150)
+        st.image(wikipedia.page(pred).images[0], caption=labels_list[str(y_predict)][:-6], width=200)
         st.markdown(wikipedia.summary(pred))
         
         if user_input := f"Explain about {pred} bird":
