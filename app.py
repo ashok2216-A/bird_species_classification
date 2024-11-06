@@ -140,9 +140,8 @@ class App:
     def run(self):
         self.display_logo()
         self.display_intro
-        self.container_heading(self.labels_list)
-
         audio_file_path = self.display_audio_input()
+        self.container_heading(self.labels_list)
 
         if audio_file_path:
             y_predict = self.process_audio(audio_file_path)
