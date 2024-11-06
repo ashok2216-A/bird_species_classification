@@ -156,11 +156,12 @@ prompt = ""
 for message in messages:
     prompt += f"{message['role']}: {message['content']}\n"
 
-# Send the request to the model
-response = inference(prompt, max_length=256, temperature=0.7, top_k=50, top_p=0.95)
+# Send the request to the model (without unsupported parameters)
+response = inference(prompt)
 
 # Print the generated response
 print(response[0]['generated_text'])
+
 
 
 
