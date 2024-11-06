@@ -116,7 +116,7 @@ client = InferenceClient(model_id)
 prompt = "explain about lion"
 
 # Generate text
-response = client.text_generation(prompt, max_length=500)
+response = client.text_generation(prompt, max_new_tokens=500)
 
 # Print the generated response
 print(response)
