@@ -149,8 +149,9 @@ st.header('', divider='rainbow')
 
 if audio_file is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-        tmp_file.write(audio_file.read())
         st.success("Audio file successfully uploaded and stored temporally.")
+        tmp_file.write(audio_file.read())
+        
     file_path = tmp_file.name
     audio_data, sampling_rate = librosa.load(file_path)
     st.audio(audio_data, sample_rate=sampling_rate)
