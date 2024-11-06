@@ -143,7 +143,7 @@ import librosa
 import streamlit as st
 import tempfile
 from PIL import Image
-from huggingface_hub import InferenceClient
+from huggingface_hub import InferenceApi
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -152,8 +152,8 @@ hf_token = os.getenv("HF_TOKEN")
 if hf_token is None:
     raise ValueError("Hugging Face token not found. Please set the HF_TOKEN environment variable.")
 
-# Authenticate with Hugging Face
-client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
+# Initialize the Inference API client
+client = InferenceApi(repo_id="HuggingFaceH4/zephyr-7b-beta", token=hf_token)
 
 # Setup Streamlit page
 st.set_page_config(
@@ -220,9 +220,7 @@ if audio_file is not None:
         
         # Generate additional bird details using Hugging Face Zephyr API
         try:
-            response = client({
-                "inputs": f"Tell me about the {pred} bird."
-            })
+            response = client(inputs=f"Tell me about the {pred} bird.")
             st.subheader("Bird Details from Zephyr Model:")
             st.markdown(response["generated_text"])
         except Exception as e:
@@ -232,3 +230,4 @@ if audio_file is not None:
         st.write('Class not Found')      
 else:
     st.markdown('File not Found!')
+
