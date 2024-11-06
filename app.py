@@ -8,9 +8,10 @@ import json
 from PIL import Image
 import pandas as pd
 from joblib import dump, load
-import wikipedia
+import Wikipedia
+import requests
 # import wikipediaapi
-import LLM
+# import LLM
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.models import load_model
 # import soundfile as sf
@@ -50,6 +51,28 @@ def predict_class(audio_path, model):
     print('HI',predicted_class_index)
     # predicted_class_label = label_encoder.inverse_transform([predicted_class_index])[0]
     return predicted_class_index
+
+@st.cache_data
+def get_bird_details(predicted_class):
+    headers = {
+        "Authorization": f"Bearer {hf_api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "inputs": f"Tell me about the bird species {predicted_class}",
+    }
+
+    response = requests.post(
+        "https://api-inference.huggingface.co/models/zephyr",
+        headers=headers,
+        json=payload
+    )
+
+    if response.status_code == 200:
+        return response.json()[0]['generated_text']
+    else:
+        st.error("Failed to retrieve bird details from Zephyr.")
+        return None
 
 audio_file = st.file_uploader("Upload an Audio file", type=["mp3", "wav", "ogg"], accept_multiple_files=False)
 # Load the model
