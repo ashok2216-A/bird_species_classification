@@ -52,7 +52,7 @@ login(hf_token)
 
 from huggingface_hub import InferenceClient
 
-client = InferenceClient(api_key="")
+client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 messages = [
 	{
