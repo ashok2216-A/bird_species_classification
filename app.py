@@ -55,10 +55,7 @@ from huggingface_hub import InferenceClient
 client = InferenceClient('HuggingFaceH4/zephyr-7b-beta')
 
 messages = [
-	{
-		"role": "user",
-		"content": "What is the capital of France?"
-	}
+	{"role": "system", "content": "You are a knowledgeable and empathetic ornithologist assistant providing accurate and relevant information based on user input."}
 ]
 
 stream = client.chat.completions.create(
@@ -69,7 +66,8 @@ stream = client.chat.completions.create(
 )
 
 for chunk in stream:
-    print(chunk.choices[0].delta.content, end="")
+    st.markdown(chunk.choices[0].delta.content, end="")
+	
 @st.cache_data
 def loaded_model(model_path):
     return load_model(model_path)
