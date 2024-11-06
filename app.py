@@ -12,7 +12,7 @@ from tensorflow.keras.models import load_model
 from huggingface_hub import InferenceClient, login
 from dotenv import load_dotenv
 from audio_processing import AudioFeatureExtractor
-from audio_analysis import AudioFeatureExtractor
+from audio_analysis import AudioVisualizer
 
 
 class BirdClassifier:
